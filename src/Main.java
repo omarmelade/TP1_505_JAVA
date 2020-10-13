@@ -1,4 +1,3 @@
-import tp1.MotCles;
 
 public class Main {
 
