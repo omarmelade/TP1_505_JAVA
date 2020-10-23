@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class Diagramme {
-	private ArrayList<Hashtable> automate;  
+	private ArrayList<HashMap<String, Integer>> automate;
 	
+
 	
-	
-	
-	
-	
-	public Diagramme( ArrayList<Hashtable> automate) {
+	public Diagramme( ArrayList<HashMap<String, Integer>> automate) {
 		this.automate = automate; 
 	}
 	
@@ -20,7 +17,7 @@ public class Diagramme {
 	public HashMap<String,Integer> estDedans(ArrayList<HashMap<String,Integer>>automate, String phrase) {
 		HashMap<String,Integer> resultat= new HashMap<String,Integer>();
 		int indice = 0;
-		
+
 		for(int i = 0;i<phrase.length();i++){
 			
 	        for (Map.Entry mapentry : automate.get(indice).entrySet()){
@@ -28,19 +25,16 @@ public class Diagramme {
 	        	if((int)mapentry.getValue()==-1) {
 	        		resultat.put((String)mapentry.getKey(),0);
 	        	}
-	        	if(mapentry.getKey()==phrase.subSequence(i,i+1)){
+	        	if(phrase.subSequence(i,i+1).equals(mapentry.getKey().toString())){
 	        		indice = (int)mapentry.getValue();
-	        	}else {
-	        		indice =0;
+					System.out.println("hello");
+	        	}else{
+	        		indice = 0;
 	        	}
 	        }
 		}
 		return resultat;
 	}
 	
-	
-	
-	
-	
-	
+
 }
