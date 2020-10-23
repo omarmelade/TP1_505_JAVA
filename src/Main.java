@@ -1,8 +1,15 @@
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+import tp1.Fenetre;
 import tp1.MotCles;
 
-public class Main {
+public class Main   {
+
 
     public static void main(String[] args) {
+    	new Fenetre();
     	System.out.println("Test");
     	MotCles m = new MotCles();
     	System.out.println("Reponses question 1");
