@@ -24,16 +24,4 @@ public class MotCles {
         }
         return found;
     }
-
-//    public void smartKeyWord(String[] keyWords, String sentence){
-//
-//        int lsize = sentence.length();
-//        for (int i = 0; i < lsize; i++) {
-//            for (String word: keyWords) {
-//                if(word.charAt(i) == sentence.charAt(i)){
-//
-//                }
-//            }
-//        }
-//    }
 }

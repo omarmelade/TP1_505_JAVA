@@ -3,9 +3,11 @@ package tp1;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 public class Fenetre extends JFrame {
 	
@@ -24,9 +26,16 @@ public Fenetre() {
     setTitle("Gestion de projet");
     setSize(LARGEUR,HAUTEUR);
     setMinimumSize(new Dimension(LARGEUR,HAUTEUR));
-	
-	
     
+    JTextField phrase = new JTextField();
+    phrase.setSize(1400, 200);
+    JTextField mot = new JTextField();
+    mot.setSize(200, 200);
+	JButton  validerQ1 = new JButton("Recherche Q1");
+	validerQ1.setSize(200, 200);
+	add(phrase);
+	add(mot);
+	add(validerQ1);
     
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
