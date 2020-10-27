@@ -38,7 +38,7 @@ public class Main   {
     	automate.add(dic0);
     	
     	HashMap<String,Integer> dic1 = new HashMap<String,Integer>();
-    	dic1.put("I", 2);
+    	dic1.put("I", 4);
     	automate.add(dic1);
     	
     	HashMap<String,Integer> dic2 = new HashMap<String,Integer>();
@@ -56,7 +56,7 @@ public class Main   {
     	
     	HashMap<String,Integer> dic5 = new HashMap<String,Integer>();
     	dic5.put("I", 8);
-    	dic5.put("n",7);
+    	dic5.put("N",7);
     	automate.add(dic5);
     	
     	HashMap<String,Integer> dic6 = new HashMap<String,Integer>();
@@ -65,11 +65,12 @@ public class Main   {
 
     	HashMap<String,Integer> dic7 = new HashMap<String,Integer>();
     	dic7.put("E", 10);
+    	dic7.put("I", 4);
     	automate.add(dic7);
     	
     	HashMap<String,Integer> dic8 = new HashMap<String,Integer>();
-    	dic8.put("I", 8);
-    	dic8.put("n",7);
+    	dic8.put("R", 6);
+    	dic8.put("N",11);
     	automate.add(dic8);
     	
     	HashMap<String,Integer> dic9 = new HashMap<String,Integer>();
@@ -88,15 +89,15 @@ public class Main   {
     	
     	HashMap<String,Integer> dic12 = new HashMap<String,Integer>();
     	dic12.put("I", 4);
+    	dic12.put("E", 13);
     	automate.add(dic12);
     	
     	HashMap<String,Integer> dic13 = new HashMap<String,Integer>();
-    	dic13.put("RENE", -1);
     	dic13.put("IRENE", -1);
+    	dic13.put("RENE", -1);
     	automate.add(dic13);
-    	
     	Diagramme q2 = new Diagramme();
-    	System.out.println(q2.estDedans(automate, "ANNIE N'HONNIT NI NINA NI IRENE"));
+    	System.out.println(q2.estDedans(automate, "ANNI N'HONNIT NI NINA NI IRENE"));
     	
     }
 }
