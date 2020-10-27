@@ -3,9 +3,7 @@ package tp1;
 
 public class MotCles {
 
-    public MotCles() {
-
-    }
+    public MotCles() {}
 
     public boolean keyword(String word, String sentence) {
         boolean found = false;     // Boolean trouvé
