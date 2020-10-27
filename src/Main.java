@@ -98,8 +98,8 @@ public class Main   {
     	dic13.put("IRENE", -1);
     	dic13.put("RENE", -1);
     	automate.add(dic13);
-    	Diagramme q2 = new Diagramme();
-    	System.out.println(q2.estDedans(automate, "ANNI N'HONNIT NI NINA NI IRENE"));
+    	Diagramme q2 = new Diagramme(automate);
+    	System.out.println(q2.estDedans("ANNI N'HONNIT NI NINA NI IRENE"));
     	
     }
 }

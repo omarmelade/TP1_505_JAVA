@@ -4,37 +4,46 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class Diagramme {
-	/*private ArrayList<HashMap<String,Integer>> automate;  */
 	
+	//Representation sous forme d'automate 
+	private ArrayList<HashMap<String,Integer>> automate; 
+	private HashMap<String,Integer> resultat;
+	private boolean trouve;
 	
-	
-	
-	
-	
-	public Diagramme( /*ArrayList<HashMap<String,Integer>> automate*/) {
-		/*this.automate = automate;*/ 
+	public Diagramme( ArrayList<HashMap<String,Integer>> automate) {
+		this.automate = automate; 
+		this.resultat = new HashMap<String,Integer>();
 	}
 	
 	
+	
+	
 	//Fonction retournant un dictionnaire de mots associés à l'indice auxquelles ils apparraissent
-	public HashMap<String,Integer> estDedans(ArrayList<HashMap<String,Integer>>automate, String phrase) {
-		HashMap<String,Integer> resultat= new HashMap<String,Integer>();
+	public HashMap<String,Integer> estDedans(String phrase) {
+		
+		//HashMap<String,Integer> resultat= new HashMap<String,Integer>();
 		int indice = 0;
+		int debutMot = 0;
+		
+		
+		
+		
 		for(int i = 0;i<phrase.length();i++){
         	boolean trouve =false;
-	        for (Map.Entry mapentry : automate.get(indice).entrySet()){
-        		//System.out.println(automate.get(indice));
-	        	//System.out.println(mapentry.getKey()+"=="+phrase.subSequence(i,i+1));
+        	//indice = chercheDico (automate.get(indice),(String)phrase.subSequence(i,i+1),resultat);
+	     /*   for (Map.Entry mapentry : automate.get(indice).entrySet()){
 	        	//On verifie si le caractère actuel de la chaine correspond à une transition de l'état en cours de l'automate
 	        	if((int)mapentry.getValue()== -1 ) {
-	        		resultat.put((String)mapentry.getKey(),0);
+	        		resultat.put((String)mapentry.getKey(),i-((String)mapentry.getKey()).length());
 	        	}
 	        	if(mapentry.getKey().toString().equals(phrase.subSequence(i,i+1))&& trouve == false){
 	        		indice = (int)mapentry.getValue();
 	        		trouve = true;
+	        		debutMot = i;
 
 	        	}
-	        }
+	        }*/
+        	
 	        if(trouve==false) {
 	        	//Si la lettre ne correspond à aucun des caractères de la lettre actuelle, on vérifie sur la transition initiale
 	        	indice = chercheDico(automate.get(0),(String)phrase.subSequence(i,i+1),resultat);
@@ -53,7 +62,7 @@ public class Diagramme {
 	}
 	
 	
-	//
+	
 	public int chercheDico (HashMap<String,Integer> dico,String car, HashMap<String,Integer> resultat) {
 		boolean trouve=false;
 		int indice = 0;
@@ -69,8 +78,6 @@ public class Diagramme {
         	}
         }
 		return indice;
-		
-	
 	}
 	
 	
