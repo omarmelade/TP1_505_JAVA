@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,6 +7,9 @@ import javax.swing.JTabbedPane;
 import tp1.Diagramme;
 import tp1.Fenetre;
 import tp1.MotCles;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main   {
 
