@@ -16,9 +16,6 @@ public class Diagramme {
 		this.trouve = false;
 	}
 
-
-	
-	
 	//Fonction retournant un dictionnaire de mots associés à l'indice auxquelles ils apparraissent
 	public HashMap<Integer,String> estDedans(String phrase) {
 
@@ -29,22 +26,10 @@ public class Diagramme {
 		for(int i = 0;i<phrase.length();i++){
         	trouve = false;
         	indice = chercheDico (automate.get(indice),(String)phrase.subSequence(i,i+1), resultat, i);
-/*	        for (Map.Entry mapentry : automate.get(indice).entrySet()){
-	        	//On verifie si le caractère actuel de la chaine correspond à une transition de l'état en cours de l'automate
-	        	if((int)mapentry.getValue()== -1 ) {
-	        		resultat.put((String)mapentry.getKey(),i-((String)mapentry.getKey()).length());
-	        	}
-	        	if(mapentry.getKey().toString().equals(phrase.subSequence(i,i+1)) && !trouve){
-	        		indice = (int)mapentry.getValue();
-	        		trouve = true;
-	        		debutMot = i;
-	        	}
-	        }*/
 
 	        if(!trouve) {
 	        	//Si la lettre ne correspond à aucun des caractères de la lettre actuelle, on vérifie sur la transition initiale
 	        	indice = chercheDico(automate.get(0),(String)phrase.subSequence(i,i+1),resultat, i);
-
 	        }
 		}
 		
@@ -86,5 +71,14 @@ public class Diagramme {
         	}
         }
 		return indice;
+		
+
+	}
+	public String afficheRes() {
+		String liste ="";
+        for (Map.Entry mapentry : resultat.entrySet()){
+        	liste = liste +" | "+ (String)mapentry.getValue()+" à L'indice "+Integer.toString((Integer)mapentry.getKey())+ " | "; 
+        }
+		return liste;
 	}
 }

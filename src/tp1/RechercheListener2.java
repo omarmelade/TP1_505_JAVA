@@ -1,40 +1,33 @@
+package tp1;
 
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-
-import tp1.Diagramme;
-import tp1.Fenetre;
-import tp1.MotCles;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Main   {
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-
-    public static void main(String[] args) {
-    	
-    	//new Fenetre();
-    	/*System.out.println("Test");
-    	MotCles m = new MotCles();
-    	System.out.println("Reponses question 1");
-    	System.out.println("====================");
-    	System.out.println("Test correct");
-    	System.out.println(m.keyword("Bonjour", "Je suis un test, Bonjour"));
-    	System.out.println("Test incorrect");
-    	System.out.println(m.keyword("Bonjour", "Je suis un test, Bonj"));
-    	String mot = "test";
-    	System.out.println(mot.subSequence(3, 4));*/
-
-    	
-    	//Question avec automate
-    	
-    	new Fenetre();
-    	//Déclaration de notre automate sous forme de ArrayList de dictionnaires
-    	/*ArrayList<HashMap<String,Integer>> automate = new ArrayList<HashMap<String,Integer>>();
-    	
+public class RechercheListener2 implements ActionListener{
+	
+	private JTextField phrase;
+	private JTextArea mot;
+	
+	
+	
+	public RechercheListener2(JTextField phrase,JTextArea mot) {
+		this.phrase=phrase;
+		this.mot =mot;
+	}
+	
+	//méthode
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		MotCles recherche = new MotCles();
+    	ArrayList<HashMap<String,Integer>> automate = new ArrayList<HashMap<String,Integer>>();
     	HashMap<String,Integer> dic0 = new HashMap<String,Integer>();
     	dic0.put("I", 3);
     	dic0.put("R", 2);
@@ -100,8 +93,11 @@ public class Main   {
     	dic13.put("IRENE", -1);
     	dic13.put("RENE", -1);
     	automate.add(dic13);
-    	Diagramme q2 = new Diagramme(automate);
-    	System.out.println(q2.estDedans("ANNI N'HONNIT NI NINA NI IRENE IRENE."));*/
-    	
-    }
+    	Diagramme auto = new Diagramme(automate);
+    	HashMap <Integer,String>trouve = auto.estDedans(phrase.getText());
+    	String motTrouve = auto.afficheRes();
+    	mot.setText(motTrouve);
+
+	}
+
 }
