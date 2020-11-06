@@ -8,8 +8,12 @@ public class Colonie {
 	private ArrayList<Arete> meilleurParcours;
 	private ArrayList<Fourmi> colonie;
 
-	
+
+	/**
+	 * @param nbFourmie le nombre de fourmi que contient la colonie
+	 */
 	public Colonie(int nbFourmie) {
+		this.nbFourmie = nbFourmie;
 		this.meilleurParcours = new ArrayList<>();
 		this.colonie = new ArrayList<>();
 		for(int i= 0;i<nbFourmie;i++) {
@@ -17,20 +21,21 @@ public class Colonie {
 		}
 	}
 	
-	
+
 	//SETTER
 	public void setMeilleurParcours(ArrayList<Arete> parcours) {
 		meilleurParcours = parcours;
 	}
 	
-	
-	
-	
+
+
+
 	//GETTERS
-	
+
 	public ArrayList<Fourmi> getColonie(){
 		return colonie;
 	}
+	
 	public int getNbFourmi(){
 		return nbFourmie;
 	}
@@ -40,5 +45,13 @@ public class Colonie {
 	public Fourmi getFourmi(int id) {
 		return colonie.get(id);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Colonie{" +
+				"nbFourmie=" + nbFourmie +
+				", meilleurParcours=" + meilleurParcours +
+				", colonie=" + colonie +
+				'}';
+	}
 }

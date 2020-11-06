@@ -9,11 +9,20 @@ public class Reseau {
     private ArrayList<Ville> villes;
     private ArrayList<Arete> distanceVilles;
 
+    /**
+     * Crée un reseau de villes avec :
+     * @param nbVilles le nombre de villes du reseau
+     */
     public Reseau(int nbVilles){
         this.nbVilles = nbVilles;
         initReseau();
     }
 
+    /**
+     * Initialise le reseau avec :
+     * Une liste de Villes
+     * Une liste d'Aretes
+     */
     public void initReseau(){
         villes = new ArrayList<>(nbVilles);
         distanceVilles = new ArrayList<>();
@@ -28,16 +37,21 @@ public class Reseau {
         return new Ville(id);
     }
 
-    // cree le tableau de villes
+    /**
+     * cree le tableau de Villes
+     * @param nbVilles le nombre de villes du reseau
+     */
     private void creeVilles(int nbVilles) {
 
         for(int i = 0; i < nbVilles; i++){
             villes.add(creeVille(i));
         }
-
     }
 
-    // cree le tableau des liens entres les villes
+    /**
+     * Cree le tableau des Aretes
+     * @param villes le tableau des villes a parcourire pour crée les Aretes
+     */
     private void initDistanceVilles(ArrayList<Ville> villes) {
 
         for ( Ville v1: villes) {
@@ -46,7 +60,6 @@ public class Reseau {
                 distanceVilles.add(d);
             }
         }
-
     }
     
     public ArrayList<Ville> getVilles(){
@@ -56,6 +69,12 @@ public class Reseau {
     	return distanceVilles;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Reseau{" +
+                "nbVilles=" + nbVilles +
+                ", villes=" + villes +
+                ", distanceVilles=" + distanceVilles +
+                '}';
+    }
 }

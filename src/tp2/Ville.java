@@ -9,6 +9,11 @@ public class Ville {
 	private double x;
 	private double y;
 
+    /**
+     * @param x la position x de la Ville
+     * @param y la position y de la Ville
+     * @param id l'id unique de la Ville
+     */
     public Ville(double x, double y, int id)
     {
     	this.id = id;
@@ -16,6 +21,9 @@ public class Ville {
         this.y = y;
     }
 
+    /**
+     * @param id l'id unique de la Ville
+     */
     public Ville(int id)
     {
     	this.id = id;
@@ -42,5 +50,12 @@ public class Ville {
     }
     public int getId(){
     	return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Ville{" +
+                "id=" + id +
+                '}';
     }
 }
