@@ -7,6 +7,8 @@ import javax.swing.JTabbedPane;
 import tp1.Diagramme;
 import tp1.Fenetre;
 import tp1.MotCles;
+import tp2.Reseau;
+import tp2.Ville;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +33,7 @@ public class Main   {
     	
     	//Question avec automate
     	
-    	new Fenetre();
+    	//new Fenetre();
     	//Déclaration de notre automate sous forme de ArrayList de dictionnaires
     	/*ArrayList<HashMap<String,Integer>> automate = new ArrayList<HashMap<String,Integer>>();
     	
@@ -102,6 +104,11 @@ public class Main   {
     	automate.add(dic13);
     	Diagramme q2 = new Diagramme(automate);
     	System.out.println(q2.estDedans("ANNI N'HONNIT NI NINA NI IRENE IRENE."));*/
-    	
+
+
+        Reseau r = new Reseau(5);
+        Ville v1 = new Ville(8.0, 8.0);
+        Ville v2 = new Ville(2.5, 7.3);
+
     }
 }
