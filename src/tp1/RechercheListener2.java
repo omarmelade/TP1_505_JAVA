@@ -26,6 +26,7 @@ public class RechercheListener2 implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+
 		MotCles recherche = new MotCles();
     	ArrayList<HashMap<String,Integer>> automate = new ArrayList<HashMap<String,Integer>>();
     	HashMap<String,Integer> dic0 = new HashMap<String,Integer>();
@@ -93,8 +94,9 @@ public class RechercheListener2 implements ActionListener{
     	dic13.put("IRENE", -1);
     	dic13.put("RENE", -1);
     	automate.add(dic13);
+
     	Diagramme auto = new Diagramme(automate);
-    	HashMap <Integer,String>trouve = auto.estDedans(phrase.getText());
+    	HashMap <Integer,String> trouve = auto.estDedans(phrase.getText());
     	String motTrouve = auto.afficheRes();
     	mot.setText(motTrouve);
 
