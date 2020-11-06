@@ -20,7 +20,7 @@ public class Reseau {
         // cree les villes
         creeVilles(nbVilles);
         // cree les routes entre les villes
-        creeRoutes(villes);
+        initDistanceVilles(villes);
     }
 
     // cree une ville
@@ -38,7 +38,7 @@ public class Reseau {
     }
 
     // cree le tableau des liens entres les villes
-    private void creeRoutes(ArrayList<Ville> villes) {
+    private void initDistanceVilles(ArrayList<Ville> villes) {
 
         for ( Ville v1: villes) {
             for(Ville v2: villes) {
@@ -47,6 +47,13 @@ public class Reseau {
             }
         }
 
+    }
+    
+    public ArrayList<Ville> getVilles(){
+    	return villes;
+    }
+    public ArrayList<Arete> getAretes(){
+    	return distanceVilles;
     }
 
 

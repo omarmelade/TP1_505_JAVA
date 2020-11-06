@@ -34,6 +34,10 @@ public class Fourmi {
     	villeCourante = ville;
     }
     
+    public Ville getVilleCourante() {
+    	return villeCourante;
+    }
+    
     
 
 }

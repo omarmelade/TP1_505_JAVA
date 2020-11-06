@@ -106,9 +106,5 @@ public class Main   {
     	System.out.println(q2.estDedans("ANNI N'HONNIT NI NINA NI IRENE IRENE."));*/
 
 
-        Reseau r = new Reseau(5);
-        Ville v1 = new Ville(8.0, 8.0);
-        Ville v2 = new Ville(2.5, 7.3);
-
     }
 }
