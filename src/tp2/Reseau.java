@@ -6,8 +6,8 @@ public class Reseau {
 
     int nbVilles;
 
-    ArrayList<Ville> villes;
-    ArrayList<Distance2Villes> distanceVilles;
+    private ArrayList<Ville> villes;
+    private ArrayList<Arete> distanceVilles;
 
     public Reseau(int nbVilles){
         this.nbVilles = nbVilles;
@@ -24,15 +24,15 @@ public class Reseau {
     }
 
     // cree une ville
-    public Ville creeVille(){
-        return new Ville();
+    public Ville creeVille(int id){
+        return new Ville(id);
     }
 
     // cree le tableau de villes
     private void creeVilles(int nbVilles) {
 
         for(int i = 0; i < nbVilles; i++){
-            villes.add(creeVille());
+            villes.add(creeVille(i));
         }
 
     }
@@ -42,7 +42,7 @@ public class Reseau {
 
         for ( Ville v1: villes) {
             for(Ville v2: villes) {
-                Distance2Villes d = new Distance2Villes(v1, v2);
+                Arete d = new Arete(v1, v2);
                 distanceVilles.add(d);
             }
         }

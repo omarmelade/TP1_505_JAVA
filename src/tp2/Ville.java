@@ -3,19 +3,22 @@ package tp2;
 import java.util.Random;
 
 public class Ville {
+	
+	private int id;
+	private final double MAX = 15.0;
+	private double x;
+	private double y;
 
-    final double MAX = 15.0;
-    double x;
-    double y;
-
-    public Ville(double x, double y)
+    public Ville(double x, double y, int id)
     {
+    	this.id = id;
         this.x = x;
         this.y = y;
     }
 
-    public Ville()
+    public Ville(int id)
     {
+    	this.id = id;
         Random rand = new Random();
         // 0.0 a 15.0
         this.x = rand.nextDouble() * MAX;
@@ -36,5 +39,8 @@ public class Ville {
 
     public double getY() {
         return y;
+    }
+    public int getId(){
+    	return id;
     }
 }
