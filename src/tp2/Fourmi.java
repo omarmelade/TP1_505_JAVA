@@ -60,4 +60,11 @@ public class Fourmi {
                 ", villesParcourue=" + villesParcourue +
                 '}';
     }
+    
+	 public void depotPheromone (Fourmi fourmi) {
+		 double quantite = Q/distanceParcourue;
+		 for(int i =0;i<villesParcourue.size();i++) {
+			 villesParcourue.get(i).setPheromone(quantite);
+		 }
+	 }
 }

@@ -14,6 +14,7 @@ public class Main {
 			 VillesAttribuables.remove(id);
 		 }
 	 }
+
 	 public static void main(String[] args) {
 		 
 		 Reseau reseau = new Reseau(20);

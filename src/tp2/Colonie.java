@@ -28,8 +28,6 @@ public class Colonie {
 	}
 	
 
-
-
 	//GETTERS
 
 	public ArrayList<Fourmi> getColonie(){
