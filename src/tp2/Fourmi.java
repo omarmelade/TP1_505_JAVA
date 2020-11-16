@@ -10,7 +10,8 @@ public class Fourmi {
     private int id;
     private Ville villeCourante;
     private double distanceParcourue;
-    private ArrayList<Arete> villesParcourue;
+    private ArrayList<Arete> arretesParcourues;
+    private ArrayList<Ville> villesParcourues;
 
     /**
      * Caractèrise une fourmi, par son id et la distance qu'elle a parcourue
@@ -20,6 +21,8 @@ public class Fourmi {
     	this.id = id;
     	this.villeCourante = null;
     	this.distanceParcourue = 0.0;
+    	this.arretesParcourues = new ArrayList<>();
+    	this.villesParcourues = new ArrayList<>();
     }
 
 
@@ -28,15 +31,15 @@ public class Fourmi {
      * si il en existe
      */
     public void initialiseVilles(){
-    	villesParcourue.clear();
+    	arretesParcourues.clear();
     }
 
     /**
      * Ajoute l'Arete que la fourmi a traversé
      * @param arete l'arete courante entre les villes
      */
-    public void ajoutVille(Arete arete){
-    	villesParcourue.add(arete);
+    public void ajoutArete(Arete arete){
+    	arretesParcourues.add(arete);
     }
        
     public void setDistance(double distance) {
@@ -45,15 +48,33 @@ public class Fourmi {
     
     public void setVille(Ville ville) {
     	villeCourante = ville;
+    	villesParcourues.add(villeCourante);
     }
     
     public Ville getVilleCourante() {
     	return villeCourante;
     }
 
+    public ArrayList<Arete> getArretesParcourues() {
+        return arretesParcourues;
+    }
+
+
+
+    public ArrayList<Ville> getVillesParcourues() {
+        return villesParcourues;
+    }
+
+    public void setVillesParcourues(ArrayList<Ville> villesParcourues) {
+        this.villesParcourues = villesParcourues;
+    }
+
+    /**
+     * Supprime les données recoltées par la fourmi
+     */
     public void resetFourmi(){
         distanceParcourue = 0.0;
-        villesParcourue.clear();
+        arretesParcourues.clear();
         villeCourante = null;
     }
 
@@ -63,14 +84,14 @@ public class Fourmi {
                 "id=" + id +
                 ", villeCourante=" + villeCourante +
                 ", distanceParcourue=" + distanceParcourue +
-                ", villesParcourue=" + villesParcourue +
+                ", villesParcourue=" + arretesParcourues +
                 '}';
     }
     
 	 public void depotPheromone (Fourmi fourmi) {
 		 double quantite = Q/distanceParcourue;
-		 for(int i =0;i<villesParcourue.size();i++) {
-			 villesParcourue.get(i).setPheromone(quantite);
+		 for(int i = 0; i< arretesParcourues.size(); i++) {
+			 arretesParcourues.get(i).setPheromone(quantite);
 		 }
 	 }
 }

@@ -14,9 +14,10 @@ public class Reseau {
      * @param nbVilles le nombre de villes du reseau
      */
     public Reseau(int nbVilles){
+
+        this.nbVilles = nbVilles;
         initReseau();
         this.nbArete = distanceVilles.size();
-        this.nbVilles = nbVilles;
     }
 
     /**
@@ -25,7 +26,7 @@ public class Reseau {
      * Une liste d'Aretes
      */
     public void initReseau(){
-        villes = new ArrayList<>(nbVilles);
+        villes = new ArrayList<>();
         distanceVilles = new ArrayList<>();
         // cree les villes
         creeVilles(nbVilles);
@@ -62,6 +63,8 @@ public class Reseau {
             }
         }
     }
+
+
     
     public ArrayList<Ville> getVilles(){
     	return villes;
