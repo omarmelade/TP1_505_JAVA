@@ -26,7 +26,6 @@ public class Colonie {
 	public void setMeilleurParcours(ArrayList<Arete> parcours) {
 		meilleurParcours = parcours;
 	}
-	
 
 	//GETTERS
 

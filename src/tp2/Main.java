@@ -6,6 +6,7 @@ import java.util.Random;
 public class Main {
 	 
 	static Random rand =new Random();
+
 	 public static void repartitionAleatoire(Reseau reseau, Colonie colonie) {
 		 ArrayList<Ville> VillesAttribuables = reseau.getVilles();
 		 for(int i = 0; i< colonie.getNbFourmi();i++) {

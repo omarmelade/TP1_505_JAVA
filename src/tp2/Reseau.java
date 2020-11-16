@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Reseau {
 
     int nbVilles;
-
+    int nbArete;
     private ArrayList<Ville> villes;
     private ArrayList<Arete> distanceVilles;
 
@@ -14,8 +14,9 @@ public class Reseau {
      * @param nbVilles le nombre de villes du reseau
      */
     public Reseau(int nbVilles){
-        this.nbVilles = nbVilles;
         initReseau();
+        this.nbArete = distanceVilles.size();
+        this.nbVilles = nbVilles;
     }
 
     /**
@@ -67,6 +68,14 @@ public class Reseau {
     }
     public ArrayList<Arete> getAretes(){
     	return distanceVilles;
+    }
+
+    public int getNbVilles() {
+        return nbVilles;
+    }
+
+    public int getNbArete() {
+        return distanceVilles.size();
     }
 
     @Override

@@ -22,6 +22,7 @@ public class Fourmi {
     	this.distanceParcourue = 0.0;
     }
 
+
     /**
      * supprime toutes les villes parcourues par la fourmi
      * si il en existe
@@ -50,6 +51,11 @@ public class Fourmi {
     	return villeCourante;
     }
 
+    public void resetFourmi(){
+        distanceParcourue = 0.0;
+        villesParcourue.clear();
+        villeCourante = null;
+    }
 
     @Override
     public String toString() {
