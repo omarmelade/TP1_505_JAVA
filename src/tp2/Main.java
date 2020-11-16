@@ -43,6 +43,18 @@ public class Main {
 
 		 //Répartition des fourmis aléatoire avec 1 ville = 1 fourmie
 		 repartitionAleatoire(reseau, colonie);
+		 
+		 //Tant que non convergence du système faire
+		 
+		 //Cycle pour l'ensemble de la colonie
+		 //Pour chaque fourmi faire
+		 for(Fourmi fourmi : colonie.getColonie()) {
+			 while(villesRestantes(reseau, fourmi).size()>0) {
+				 
+			 }
+			 
+		 }
+		 
 
 		 System.out.println("villes a parcourir :" + villesRestantes(reseau, colonie.getFourmi(0)));
 	 }
