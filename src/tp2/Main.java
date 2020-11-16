@@ -27,14 +27,17 @@ public class Main {
 		return villesRestantes;
 	 }
 
-/*	 public void cycleFourmi(Reseau reseau, Fourmi fourmi){
-	 	int nbVilles = reseau.getNbVilles();
-	 	ArrayList<Ville> villesRestantes = villesRestantes(reseau, fourmi);
-	 	while(villesRestantes.size() > 0){
-
-		}
-
-	 }*/
+	 public static void villeSuivante(Fourmi fourmi,Reseau reseau){
+		 ArrayList<Ville> villeRest = villesRestantes(reseau, fourmi);
+		 double coef =0;
+		 ArrayList<Ville> proba = new ArrayList();
+		 for(Ville v:villeRest){
+			 double distance = new Arete(fourmi.getVilleCourante(),v).getDistance();
+			 double distanceCourante = 1*(1/distance);
+			 
+			 
+		 }
+	 }
 
 	 public static void main(String[] args) {
 
@@ -49,7 +52,8 @@ public class Main {
 		 //Cycle pour l'ensemble de la colonie
 		 //Pour chaque fourmi faire
 		 for(Fourmi fourmi : colonie.getColonie()) {
-			 while(villesRestantes(reseau, fourmi).size()>0) {
+			 while(villesRestantes(reseau, fourmi).size()>0){
+				 
 				 
 			 }
 			 
