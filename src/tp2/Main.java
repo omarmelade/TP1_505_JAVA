@@ -37,6 +37,13 @@ public class Main {
 			 
 		 }
 	 }
+	 
+	 public static void randVille(Fourmi fourmi, ArrayList<Integer> liste, Reseau reseau){
+		 Random rand = new Random();
+		 int i = rand.nextInt(liste.size());
+		 Ville ville = reseau.getVilles().get(i);
+		 fourmi.setVille(ville); //met à jour la liste de ville parcourue pour cette fourmi et met à jour sa ville courante
+	 }
 
 	 public static void main(String[] args) {
 
@@ -75,9 +82,7 @@ public class Main {
 					 }
 				 }
 				 //===================================================================================
-				 
-				 
-				 
+				 randVille(fourmi,listeProba,reseau); //Choix de la ville suivante			 
 			 }
 			 
 		 }
