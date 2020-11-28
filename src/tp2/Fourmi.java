@@ -59,8 +59,6 @@ public class Fourmi {
         return arretesParcourues;
     }
 
-
-
     public ArrayList<Ville> getVillesParcourues() {
         return villesParcourues;
     }

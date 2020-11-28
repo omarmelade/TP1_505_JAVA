@@ -19,8 +19,8 @@ public class Main {
 
 	 public static ArrayList<Ville> villesRestantes(Reseau r, Fourmi f){
 	 	ArrayList<Ville> villesRestantes = (ArrayList<Ville>) r.getVilles().clone();
-	 	System.out.println(f.getVilleCourante());
-		 System.out.println(villesRestantes);
+	 	//System.out.println(f.getVilleCourante());
+		 //System.out.println(villesRestantes);
 		 villesRestantes.removeAll(f.getVillesParcourues());
 
 		return villesRestantes;
@@ -37,12 +37,42 @@ public class Main {
 			 
 		 }
 	 }
-	 
-	 public static void randVille(Fourmi fourmi, ArrayList<Integer> liste, Reseau reseau){
+
+	 public static Ville randVille(Fourmi fourmi, ArrayList<Integer> liste, Reseau reseau){
 		 Random rand = new Random();
 		 int i = rand.nextInt(liste.size());
-		 Ville ville = reseau.getVilles().get(i);
+		 int indice = liste.get(i);
+		 Ville ville = reseau.getVilles().get(indice);
+		 fourmi.ajoutArete(reseau.getArete(fourmi.getVilleCourante(), ville)); // ajoute a la liste des arretes parcourues la nouvelle arete.
 		 fourmi.setVille(ville); //met à jour la liste de ville parcourue pour cette fourmi et met à jour sa ville courante
+		 return ville;
+	 }
+
+	 public static void evaporationTime(Reseau reseau){
+		 for (Arete a: reseau.getAretes()) {
+			 a.setEvaporation();
+		 }
+	 }
+
+	 public static void depotPheromone(Colonie col){
+		 for (Fourmi f: col.getColonie()) {
+			 for (Arete a: f.getArretesParcourues()) {
+				 a.setPheromone(0.5); // les fourmis deposent pour le moment une quantité 0.5 (arbitraire de phéronmone
+			 }
+		 }
+	 }
+
+	 public static ArrayList<Arete> getMeilleurParcours(Colonie col){
+	 	 int nbArete = 100000;
+		 ArrayList<Arete> bestWay = new ArrayList<>();
+		 for (Fourmi f: col.getColonie()) {
+		 		int nbAreteDeFourmi = f.getArretesParcourues().size();
+			 	if( nbAreteDeFourmi < nbArete){
+		 			nbArete = nbAreteDeFourmi;
+		 			bestWay = f.getArretesParcourues();
+				}
+		 }
+		 return bestWay;
 	 }
 
 	 public static void main(String[] args) {
@@ -52,47 +82,62 @@ public class Main {
 
 		 //Répartition des fourmis aléatoire avec 1 ville = 1 fourmie
 		 repartitionAleatoire(reseau, colonie);
-		 
+		 ArrayList<Arete> meilleurParcours = new ArrayList<>();
 		 //Tant que non convergence du système faire
 		 //Cycle pour l'ensemble de la colonie
 		 //Pour chaque fourmi faire
-		 for(Fourmi fourmi : colonie.getColonie()) { 
+		 for(Fourmi fourmi : colonie.getColonie()) {
 			 ArrayList<Ville> restante = villesRestantes(reseau, fourmi);
+
 			 while(restante.size()>0){
-				 //Liste contenant un certain de nombre de fois chaque villes restantes selon la probilité 
+				 //Liste contenant un certain de nombre de fois chaque villes restantes selon la probilité
 				 ArrayList<Integer> listeProba = new ArrayList<>();
 				 double prob =0.0; //va permettre de savoir la probabilité de choix pour chaque ville
 				 double nominateur = 0.0;
 				 double denominateur = 0.0;
+
 				 //==========================================Boucle permettant de calculer la proba
 				 for(int i =0;i<restante.size();i++) {
 					 Ville temp = restante.get(i);
 					 Arete tempArete = reseau.getArete(fourmi.getVilleCourante(), temp);
-					 nominateur = (tempArete.getPhero()*Arete.EVAPORATION)*(1/tempArete.distance);
+					 nominateur = (tempArete.getPhero() * Arete.EVAPORATION) * (1 / tempArete.distance);
 
 					 //Boucle permettant de calculer le denominateur
-					 for(int j=0;j<restante.size();j++) {
+					 for (int j = 0; j < restante.size(); j++) {
 						 Ville tempSomme = restante.get(j);
 						 Arete areteSomme = reseau.getArete(fourmi.getVilleCourante(), tempSomme);
-						 denominateur +=  (areteSomme.getPhero()*Arete.EVAPORATION)*(1/areteSomme.distance);
+						 denominateur += (areteSomme.getPhero() * Arete.EVAPORATION) * (1 / areteSomme.distance);
 					 }
-					 prob = nominateur/denominateur; //Proba pour la ville temporaire
-					 for(int k=0;k<((int)prob)*10;k++) {
+					 prob = nominateur / denominateur; //Proba pour la ville temporaire
+					 prob = Math.ceil(prob * 100);
+					 for (int k = 0; k < prob; k++) {
 						 listeProba.add(temp.getId());
 					 }
 				 }
 				 //===================================================================================
-				 randVille(fourmi,listeProba,reseau); //Choix de la ville suivante			 
-			 }
-			 
-		 }
-		 
 
-		 System.out.println("villes a parcourir :" + villesRestantes(reseau, colonie.getFourmi(0)));
+				 Ville villeChoisie = randVille(fourmi, listeProba, reseau);
+				 restante.remove(villeChoisie);
+				 // affiche les aretes parcpurues
+				 System.out.println("fourmi : " + fourmi.getArretesParcourues());
+			 }
+
+		 }
+		 // ======= après que toutes les fourmis aient parcourues tout le reseau,  les phéronomones s'évaporent
+		 evaporationTime(reseau);
+		// après que sur chaque arète les phéromones se soient évaporés, les fourmis deposent les leurs de nouveau
+		 depotPheromone(colonie);
+		 // on selectionne le meilleur parcours parmis le parcours des fourmis et on l'enregistre si il est meilleur que l'ancien.
+		 ArrayList<Arete> nouveauMeilleurParcours = getMeilleurParcours(colonie);
+		 if(meilleurParcours.size() > nouveauMeilleurParcours.size()){
+			 meilleurParcours = nouveauMeilleurParcours;
+		 }
+
+
+		 //System.out.println("villes a parcourir :" + villesRestantes(reseau, colonie.getFourmi(0)));
 	 }
-	 
-	 
-	 
-	 
+
+
+
 
 }

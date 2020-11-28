@@ -71,6 +71,13 @@ public class Arete {
     	quantitePheromone += pheromone;
     }
 
+    /**
+     * Fait s'évaporer les phéromone
+     */
+    public void setEvaporation(){
+        quantitePheromone -= EVAPORATION;
+    }
+
     @Override
     public String toString() {
         return "Arete{" +
