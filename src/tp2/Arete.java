@@ -75,7 +75,7 @@ public class Arete {
      * Fait s'évaporer les phéromone
      */
     public void setEvaporation(){
-        quantitePheromone -= EVAPORATION;
+        quantitePheromone = quantitePheromone * EVAPORATION;
     }
 
     @Override

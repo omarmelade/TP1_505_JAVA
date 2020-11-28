@@ -54,21 +54,23 @@ public class Main {
 		 }
 	 }
 
-	 public static void depotPheromone(Colonie col){
+	 public static void depotPheromone(Colonie col, Reseau r){
 		 for (Fourmi f: col.getColonie()) {
 			 for (Arete a: f.getArretesParcourues()) {
-				 a.setPheromone(0.5); // les fourmis deposent pour le moment une quantité 0.5 (arbitraire de phéronmone
+				  // les fourmis deposent pour le moment une quantité 0.5 (arbitraire de phéronmone
+				 r.modifieArete(a.getV1(), a.getV2());
+
 			 }
 		 }
 	 }
 
 	 public static ArrayList<Arete> getMeilleurParcours(Colonie col){
-	 	 int nbArete = 100000;
+	 	 double distance = col.getColonie().get(0).getDistanceParcourue();
 		 ArrayList<Arete> bestWay = new ArrayList<>();
 		 for (Fourmi f: col.getColonie()) {
-		 		int nbAreteDeFourmi = f.getArretesParcourues().size();
-			 	if( nbAreteDeFourmi < nbArete){
-		 			nbArete = nbAreteDeFourmi;
+		 		double distanceDeFourmi = f.getDistanceParcourue();
+			 	if( distanceDeFourmi < distance){
+		 			distance = distanceDeFourmi;
 		 			bestWay = f.getArretesParcourues();
 				}
 		 }
@@ -86,7 +88,9 @@ public class Main {
 		 //Tant que non convergence du système faire
 		 //Cycle pour l'ensemble de la colonie
 		 //Pour chaque fourmi faire
+		 int indiceF = 0;
 		 for(Fourmi fourmi : colonie.getColonie()) {
+		 	indiceF++;
 			 ArrayList<Ville> restante = villesRestantes(reseau, fourmi);
 
 			 while(restante.size()>0){
@@ -118,15 +122,15 @@ public class Main {
 
 				 Ville villeChoisie = randVille(fourmi, listeProba, reseau);
 				 restante.remove(villeChoisie);
-				 // affiche les aretes parcpurues
-				 System.out.println("fourmi : " + fourmi.getArretesParcourues());
 			 }
-
+			 //System.out.println("fourmi " + indiceF + " : "+ fourmi.getArretesParcourues().size());
 		 }
 		 // ======= après que toutes les fourmis aient parcourues tout le reseau,  les phéronomones s'évaporent
 		 evaporationTime(reseau);
+
 		// après que sur chaque arète les phéromones se soient évaporés, les fourmis deposent les leurs de nouveau
-		 depotPheromone(colonie);
+		 depotPheromone(colonie, reseau);
+		 System.out.println("Arete fin de boucle : " + reseau.getAretes());
 		 // on selectionne le meilleur parcours parmis le parcours des fourmis et on l'enregistre si il est meilleur que l'ancien.
 		 ArrayList<Arete> nouveauMeilleurParcours = getMeilleurParcours(colonie);
 		 if(meilleurParcours.size() > nouveauMeilleurParcours.size()){

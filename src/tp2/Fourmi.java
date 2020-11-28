@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Fourmi {
 
-	private static int Q = 1; //Quantite de phéromones communes aux fourmis
+	public static int Q = 1; //Quantite de phéromones communes aux fourmis
 	
 	
     private int id;
@@ -40,6 +40,8 @@ public class Fourmi {
      */
     public void ajoutArete(Arete arete){
     	arretesParcourues.add(arete);
+    	setDistance(arete.distance);
+    	setDistance(arete.distance);
     }
        
     public void setDistance(double distance) {
@@ -57,6 +59,10 @@ public class Fourmi {
 
     public ArrayList<Arete> getArretesParcourues() {
         return arretesParcourues;
+    }
+
+    public double getDistanceParcourue() {
+        return distanceParcourue;
     }
 
     public ArrayList<Ville> getVillesParcourues() {

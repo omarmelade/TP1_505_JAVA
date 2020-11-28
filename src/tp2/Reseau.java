@@ -82,6 +82,14 @@ public class Reseau {
     	return arete;
     }
 
+    public void modifieArete(Ville v1, Ville v2){
+        for (Arete a: distanceVilles) {
+            if(a.getV1().getId() == v1.getId() && a.getV2().getId() == v2.getId()){
+                a.setPheromone(Fourmi.Q);
+            }
+        }
+    }
+
     public int getNbVilles() {
         return nbVilles;
     }
