@@ -54,6 +54,28 @@ public class Main {
 			 while(restante.size()>0){
 				 //Liste contenant un certain de nombre de fois chaque villes restantes selon la probilité 
 				 ArrayList<Integer> listeProba = new ArrayList<>();
+				 double prob =0.0; //va permettre de savoir la probabilité de choix pour chaque ville
+				 double nominateur = 0.0;
+				 double denominateur = 0.0;
+				 //==========================================Boucle permettant de calculer la proba
+				 for(int i =0;i<restante.size();i++) {
+					 Ville temp = restante.get(i);
+					 Arete tempArete = reseau.getArete(fourmi.getVilleCourante(), temp);
+					 nominateur = (tempArete.getPhero()*Arete.EVAPORATION)*(1/tempArete.distance);
+
+					 //Boucle permettant de calculer le denominateur
+					 for(int j=0;j<restante.size();j++) {
+						 Ville tempSomme = restante.get(j);
+						 Arete areteSomme = reseau.getArete(fourmi.getVilleCourante(), tempSomme);
+						 denominateur +=  (areteSomme.getPhero()*Arete.EVAPORATION)*(1/areteSomme.distance);
+					 }
+					 prob = nominateur/denominateur; //Proba pour la ville temporaire
+					 for(int k=0;k<((int)prob)*10;k++) {
+						 listeProba.add(temp.getId());
+					 }
+				 }
+				 //===================================================================================
+				 
 				 
 				 
 			 }

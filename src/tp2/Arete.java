@@ -2,7 +2,8 @@ package tp2;
 
 public class Arete {
 
-	private static final double PHEROMONE_INIT = 0.5;
+	private static final double PHEROMONE_INIT = 2;
+	public static final double EVAPORATION = 0.25;
     double distance;
     Ville v1, v2;
     double quantitePheromone;
@@ -18,6 +19,12 @@ public class Arete {
         this.v2 = v2;
         this.distance = distanceEntreVille();
         this.quantitePheromone = PHEROMONE_INIT;
+    }
+    public Arete(Ville v1,Ville v2,double distance, double quantitePheromone) {
+    	this.v1 = v1;
+    	this.v2=v2;
+    	this.distance=distance;
+    	this.quantitePheromone=quantitePheromone;
     }
 
     /**
@@ -54,6 +61,9 @@ public class Arete {
         return v2;
     }
 
+    public double getPhero() {
+    	return quantitePheromone;
+    }
     /**
      * @param pheromone la quantité de phéromone a déposer sur l'arete
      */

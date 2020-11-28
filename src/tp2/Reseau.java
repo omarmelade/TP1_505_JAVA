@@ -72,6 +72,15 @@ public class Reseau {
     public ArrayList<Arete> getAretes(){
     	return distanceVilles;
     }
+    public Arete getArete(Ville v1, Ville v2){
+    	Arete arete = new Arete(v1,v2);
+    	for(Arete a: distanceVilles) {
+    		if( (a.getV1().getId()==v1.getId()) && (a.getV2().getId()==v2.getId())) {
+    			arete = new Arete(a.getV1(),a.getV2(),a.getDistance(),a.getPhero());
+    		}
+    	}
+    	return arete;
+    }
 
     public int getNbVilles() {
         return nbVilles;
