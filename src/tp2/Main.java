@@ -21,8 +21,7 @@ public class Main {
 	 	ArrayList<Ville> villesRestantes = (ArrayList<Ville>) r.getVilles().clone();
 	 	System.out.println(f.getVilleCourante());
 		 System.out.println(villesRestantes);
-
-		villesRestantes.removeAll(f.getVillesParcourues());
+		 villesRestantes.removeAll(f.getVillesParcourues());
 
 		return villesRestantes;
 	 }
@@ -48,11 +47,13 @@ public class Main {
 		 repartitionAleatoire(reseau, colonie);
 		 
 		 //Tant que non convergence du système faire
-		 
 		 //Cycle pour l'ensemble de la colonie
 		 //Pour chaque fourmi faire
-		 for(Fourmi fourmi : colonie.getColonie()) {
-			 while(villesRestantes(reseau, fourmi).size()>0){
+		 for(Fourmi fourmi : colonie.getColonie()) { 
+			 ArrayList<Ville> restante = villesRestantes(reseau, fourmi);
+			 while(restante.size()>0){
+				 //Liste contenant un certain de nombre de fois chaque villes restantes selon la probilité 
+				 ArrayList<Integer> listeProba = new ArrayList<>();
 				 
 				 
 			 }
