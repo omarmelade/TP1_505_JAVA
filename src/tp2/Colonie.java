@@ -6,6 +6,7 @@ public class Colonie {
 	
 	private int nbFourmie;
 	private ArrayList<Arete> meilleurParcours;
+	private double meilleureDistance;
 	private ArrayList<Fourmi> colonie;
 
 
@@ -28,6 +29,14 @@ public class Colonie {
 	}
 
 	//GETTERS
+
+	public double getMeilleureDistance() {
+		return meilleureDistance;
+	}
+
+	public void setMeilleureDistance(double meilleureDistance) {
+		this.meilleureDistance = meilleureDistance;
+	}
 
 	public ArrayList<Fourmi> getColonie(){
 		return colonie;

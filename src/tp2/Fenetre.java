@@ -53,7 +53,7 @@ public Fenetre() {
     boutons.add(etape);
     Info.add(boutons);
     
-    
+
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
