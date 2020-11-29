@@ -137,7 +137,7 @@ public class Main {
 			 meilleurParcours = nouveauMeilleurParcours;
 		 }
 
-
+		 new Fenetre();
 		 //System.out.println("villes a parcourir :" + villesRestantes(reseau, colonie.getFourmi(0)));
 	 }
 
