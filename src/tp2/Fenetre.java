@@ -1,18 +1,7 @@
 package tp2;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.*;
 
 public class Fenetre extends JFrame {
 	
@@ -32,11 +21,7 @@ public Fenetre() {
     setLayout(layout);
     add(Info);
     add(dessein);
-    
-    
-    
-    
-    
+
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);

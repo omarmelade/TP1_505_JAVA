@@ -78,8 +78,9 @@ public class Fourmi {
      */
     public void resetFourmi(){
         distanceParcourue = 0.0;
+        villesParcourues.clear();
         arretesParcourues.clear();
-        villeCourante = null;
+        setVille(villeCourante);
     }
 
     @Override
