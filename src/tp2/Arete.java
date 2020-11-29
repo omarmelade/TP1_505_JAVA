@@ -3,7 +3,7 @@ package tp2;
 public class Arete {
 
 	private static final double PHEROMONE_INIT = 2;
-	public static final double EVAPORATION = 0.25;
+	public static final double EVAPORATION = 0.7;
     double distance;
     Ville v1, v2;
     double quantitePheromone;
