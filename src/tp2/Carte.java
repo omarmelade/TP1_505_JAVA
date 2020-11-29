@@ -2,7 +2,8 @@ package tp2;
 
 import java.awt.Canvas;
 import java.util.Observer;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 public class Carte extends Canvas{
 	//Constantes
 	private static final long serialVersionUID = 1L;
@@ -16,8 +17,9 @@ public class Carte extends Canvas{
 	}
 	
 	public void paint(Graphics g) {
-		g.setColor(Color.RED);
+		g.setColor(Color.BLUE);
 		g.fillRect(1000, 1000, 1000, 1000);
+		g.drawRect(1000,1000,1000,1000);
 	}
 	
 

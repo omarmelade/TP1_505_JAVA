@@ -36,6 +36,7 @@ public Fenetre() {
     add(Info,BorderLayout.WEST);
     //Dessein du réseau
     Carte carte = new Carte(reseau);
+    carte.paint(carte.getGraphics());
     add(carte,BorderLayout.CENTER);
     //Element du panneau de contrôle 
     JLabel information = new JLabel("Panneau de commande");
