@@ -2,9 +2,13 @@ package tp2;
 
 import java.awt.Canvas;
 import java.util.Observer;
+
+import javax.swing.JPanel;
+
 import java.awt.Color;
 import java.awt.Graphics;
-public class Carte extends Canvas{
+import java.awt.Graphics2D;
+public class Carte extends JPanel{
 	//Constantes
 	private static final long serialVersionUID = 1L;
 	
@@ -15,11 +19,12 @@ public class Carte extends Canvas{
 	public Carte(Reseau reseau) {
 		this.reseau =reseau;
 	}
-	
-	public void paint(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(1000, 1000, 1000, 1000);
-		g.drawRect(1000,1000,1000,1000);
+	@Override
+	public void  paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D graphic2d = (Graphics2D) g;
+		graphic2d.setColor(Color.WHITE);
+		graphic2d.fillRect(0, 25, this.getWidth()-25, this.getHeight()-50);
 	}
 	
 
