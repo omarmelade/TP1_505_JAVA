@@ -1,8 +1,9 @@
 package tp2;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Reseau {
+public class Reseau extends Observable {
 
     int nbVilles;
     int nbArete;

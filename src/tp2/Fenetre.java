@@ -22,7 +22,7 @@ final static int HAUTEUR= 800;
 final static int LARGEUR= 1600;
 
 public Fenetre() {
-	 Reseau reseau = new Reseau(20);
+	 Reseau reseau = new Reseau(10);
 	//Informations générales de la fenêtre
     setTitle("Algorithme des fourmis");
     setSize(LARGEUR,HAUTEUR);
@@ -36,6 +36,7 @@ public Fenetre() {
     add(Info,BorderLayout.WEST);
     //Dessein du réseau
     Carte carte = new Carte(reseau);
+    reseau.addObserver(carte);
     carte.paint(carte.getGraphics());
     add(carte,BorderLayout.CENTER);
     //Element du panneau de contrôle 
@@ -54,6 +55,9 @@ public Fenetre() {
     boutons.add(etape);
     Info.add(boutons);
     
+    //Gestion Listeners
+    ActionListener cycleComplet = new CycleCompletListener(reseau);
+    start.addActionListener(cycleComplet);
 
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
