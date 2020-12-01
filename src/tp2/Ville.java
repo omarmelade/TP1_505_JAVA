@@ -5,7 +5,8 @@ import java.util.Random;
 public class Ville {
 	
 	private int id;
-	private final double MAX = 15.0;
+	public final double MAX_Y = 15.0;
+	public final double MAX_X = 25.0;
 	private double x;
 	private double y;
 
@@ -29,8 +30,8 @@ public class Ville {
     	this.id = id;
         Random rand = new Random();
         // 0.0 a 15.0
-        this.x = rand.nextDouble() * MAX;
-        this.y = rand.nextDouble() * MAX;
+        this.x = rand.nextDouble() * MAX_X;
+        this.y = rand.nextDouble() * MAX_Y;
     }
 
     public void setX(double newX) {

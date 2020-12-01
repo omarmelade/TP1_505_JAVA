@@ -1,19 +1,8 @@
 package tp2;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class Fenetre extends JFrame {
 	
@@ -22,7 +11,7 @@ final static int HAUTEUR= 800;
 final static int LARGEUR= 1600;
 
 public Fenetre() {
-	 Reseau reseau = new Reseau(10);
+    Reseau reseau = new Reseau(25);
 	//Informations générales de la fenêtre
     setTitle("Algorithme des fourmis");
     setSize(LARGEUR,HAUTEUR);
@@ -34,18 +23,14 @@ public Fenetre() {
     JPanel boutons = new JPanel();
     BorderLayout layout = new BorderLayout();
     add(Info,BorderLayout.WEST);
-    //Dessein du réseau
-    Carte carte = new Carte(reseau);
-    reseau.addObserver(carte);
-    carte.paint(carte.getGraphics());
-    add(carte,BorderLayout.CENTER);
+
+
     //Element du panneau de contrôle 
     JLabel information = new JLabel("Panneau de commande");
     JButton nouveau = new JButton("Nouveau réseau");
-    JButton start = new JButton("Démarré cycles");
+    JButton start = new JButton("Démarrer cycles");
     JButton etape = new JButton("nouveau cycle");
     JLabel cycle = new JLabel ("Cycle n° ");
-    
     
     
     //Ajout des éléments
@@ -54,12 +39,18 @@ public Fenetre() {
     boutons.add(start);
     boutons.add(etape);
     Info.add(boutons);
-    
+
     //Gestion Listeners
     ActionListener cycleComplet = new CycleCompletListener(reseau);
     start.addActionListener(cycleComplet);
 
-    
+    //Dessein du réseau
+    Carte carte = new Carte(reseau);
+    reseau.addObserver(carte);
+    add(carte,BorderLayout.CENTER);
+
+
+
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
 }

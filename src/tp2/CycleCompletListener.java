@@ -181,9 +181,7 @@ public class CycleCompletListener implements ActionListener {
 			 System.out.println("============SUIVANT==============");
 			 System.out.println("Distance : "+colonie.getMeilleureDistance());
 		 }
-		
-		 reseau.notifyObservers();
-		 
-		 }
 
+		 reseau.notifyObservers();
+		 }
 }
