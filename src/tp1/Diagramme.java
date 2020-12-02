@@ -71,9 +71,8 @@ public class Diagramme {
         	}
         }
 		return indice;
-		
-
 	}
+	
 	public String afficheRes() {
 		String liste ="";
         for (Map.Entry mapentry : resultat.entrySet()){

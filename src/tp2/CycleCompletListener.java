@@ -39,7 +39,7 @@ public class CycleCompletListener implements ActionListener {
 		return villesRestantes;
 	 }
 
-	 public static void villeSuivante(Fourmi fourmi,Reseau reseau){
+	/* public static void villeSuivante(Fourmi fourmi,Reseau reseau){
 		 ArrayList<Ville> villeRest = villesRestantes(reseau, fourmi);
 		 double coef =0;
 		 ArrayList<Ville> proba = new ArrayList();
@@ -49,7 +49,7 @@ public class CycleCompletListener implements ActionListener {
 			 
 			 
 		 }
-	 }
+	 }*/
 
 	 public static Ville randVille(Fourmi fourmi, ArrayList<Integer> liste, Reseau reseau){
 		 Random rand = new Random();
@@ -186,8 +186,6 @@ public class CycleCompletListener implements ActionListener {
 			for (Fourmi f: colonie.getColonie()) {
 				 f.resetFourmi();
 			 }
-			 //System.out.println("============SUIVANT==============");
-			 //System.out.println("Distance : "+colonie.getMeilleureDistance());
 			 reseau.notifyObservers();
 			 try {
 				Thread.sleep(250);
@@ -195,7 +193,6 @@ public class CycleCompletListener implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			 System.out.println("Meilleur distance:"+colonie.getMeilleureDistance());
 			 //System.out.println(colonie.getMeilleurParcours());
 		 	}	
 		 distance.setText("Plus courte distance : "+Math.round(colonie.getMeilleureDistance()));
