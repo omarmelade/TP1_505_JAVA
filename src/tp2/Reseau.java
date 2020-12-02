@@ -89,6 +89,7 @@ public class Reseau extends Observable {
         for (Arete a: distanceVilles) {
             if(a.getV1().getId() == v1.getId() && a.getV2().getId() == v2.getId()){
                 a.setPheromone(Fourmi.Q);
+                this.setChanged();
             }
         }
         setChanged();
