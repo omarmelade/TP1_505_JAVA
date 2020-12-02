@@ -22,5 +22,4 @@ public class NouveauReseauListener implements ActionListener{
 	     reseau.notifyObservers();
 	     System.out.println("============================NOUVEAU RESEAU DE TAILLE : "+reseau.getNbVilles()+"============================");
 	}
-
 }

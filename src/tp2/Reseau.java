@@ -61,8 +61,10 @@ public class Reseau extends Observable {
 
         for ( Ville v1: villes) {
             for(Ville v2: villes) {
+            	if((v1.getId()>v2.getId())) {
                 Arete d = new Arete(v1, v2);
                 distanceVilles.add(d);
+            	}
             }
         }
     }
@@ -80,6 +82,8 @@ public class Reseau extends Observable {
     	for(Arete a: distanceVilles) {
     		if( (a.getV1().getId()==v1.getId()) && (a.getV2().getId()==v2.getId())) {
     			arete = new Arete(a.getV1(),a.getV2(),a.getDistance(),a.getPhero());
+    		}else if((a.getV1().getId()==v2.getId()) && (a.getV2().getId()==v1.getId())) {
+    			arete = new Arete(a.getV1(),a.getV2(),a.getDistance(),a.getPhero());
     		}
     	}
     	return arete;
@@ -89,6 +93,8 @@ public class Reseau extends Observable {
         for (Arete a: distanceVilles) {
             if(a.getV1().getId() == v1.getId() && a.getV2().getId() == v2.getId()){
                 a.setPheromone(Fourmi.Q);
+            }else if(a.getV1().getId() == v1.getId() && a.getV2().getId() == v2.getId()) {
+            	a.setPheromone(Fourmi.Q);
             }
         }
         this.setChanged();
