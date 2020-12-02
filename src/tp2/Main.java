@@ -161,7 +161,7 @@ public class Main {
 			nouvelleDistance = colonie.getMeilleureDistance();
 			nouveauMeilleurParcours = colonie.getMeilleurParcours();
 			// on calcul la difference entre les 2 distances
-			difference = Math.abs(distanceAncien - nouvelleDistance);
+			difference = distanceAncien - nouvelleDistance;
 			//System.out.println(distanceAncien + " - " + nouvelleDistance + " = " + difference);
 			// si c'est la premiere occurence de la boucle OU si le meilleur parcours est moins bon que le nouveau alors :
 		 	meilleur = distanceAncien >= nouvelleDistance;
