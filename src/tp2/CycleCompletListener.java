@@ -5,12 +5,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 public class CycleCompletListener implements ActionListener {
 	
 	Reseau reseau;
+	JPanel carte;
 	
-	
-	public CycleCompletListener(Reseau reseau) {
+	public CycleCompletListener(Reseau reseau, JPanel carte) {
 		this.reseau = reseau;
 	}
 	
@@ -163,7 +165,7 @@ public class CycleCompletListener implements ActionListener {
 			nouvelleDistance = colonie.getMeilleureDistance();
 			nouveauMeilleurParcours = colonie.getMeilleurParcours();
 			// on calcul la difference entre les 2 distances
-			difference = Math.abs(distanceAncien - nouvelleDistance);
+			difference = distanceAncien - nouvelleDistance;
 			//System.out.println(distanceAncien + " - " + nouvelleDistance + " = " + difference);
 			// si c'est la premiere occurence de la boucle OU si le meilleur parcours est moins bon que le nouveau alors :
 		 	meilleur = distanceAncien >= nouvelleDistance;
@@ -180,10 +182,7 @@ public class CycleCompletListener implements ActionListener {
 			 }
 			 System.out.println("============SUIVANT==============");
 			 System.out.println("Distance : "+colonie.getMeilleureDistance());
+		 	}	
+	        reseau.notifyObservers(carte);
 		 }
-		
-		 reseau.notifyObservers();
-		 
-		 }
-
 }

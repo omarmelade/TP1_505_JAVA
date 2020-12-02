@@ -19,6 +19,8 @@ public class Reseau extends Observable {
         this.nbVilles = nbVilles;
         initReseau();
         this.nbArete = distanceVilles.size();
+        setChanged();
+        notifyAll();
     }
 
     /**
@@ -89,6 +91,8 @@ public class Reseau extends Observable {
                 a.setPheromone(Fourmi.Q);
             }
         }
+        setChanged();
+        notifyAll();
     }
 
     public int getNbVilles() {

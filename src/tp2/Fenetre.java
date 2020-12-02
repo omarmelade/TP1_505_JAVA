@@ -56,7 +56,7 @@ public Fenetre() {
     Info.add(boutons);
     
     //Gestion Listeners
-    ActionListener cycleComplet = new CycleCompletListener(reseau);
+    ActionListener cycleComplet = new CycleCompletListener(reseau,carte);
     start.addActionListener(cycleComplet);
 
     

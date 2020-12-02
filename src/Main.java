@@ -18,7 +18,7 @@ public class Main   {
 
     public static void main(String[] args) {
     	
-    	//new Fenetre();
+    	new Fenetre();
     	/*System.out.println("Test");
     	MotCles m = new MotCles();
     	System.out.println("Reponses question 1");
