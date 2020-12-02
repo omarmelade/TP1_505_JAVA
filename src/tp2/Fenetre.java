@@ -12,6 +12,7 @@ final static int LARGEUR= 1600;
 
     public Fenetre() {
         Reseau reseau = new Reseau(10);
+        Colonie colonie = new Colonie(10);
         //Informations générales de la fenêtre
         setTitle("Algorithme des fourmis");
         setSize(LARGEUR,HAUTEUR);
@@ -19,36 +20,41 @@ final static int LARGEUR= 1600;
 
         //Création du panel contenant les informations importantes et le panel contenant le dessein de la carte
         JPanel Info = new JPanel();
-        Info.setLayout(new GridLayout(4,1));
-        JPanel boutons = new JPanel();
-        BorderLayout layout = new BorderLayout();
+        Info.setLayout(new GridLayout(5,1));
         add(Info,BorderLayout.WEST);
 
 
         //Element du panneau de contrôle
         JLabel information = new JLabel("Panneau de commande");
-        JButton nouveau = new JButton("Nouveau réseau");
-        JButton start = new JButton("Démarrer cycles");
-        JButton etape = new JButton("nouveau cycle");
-        JLabel cycle = new JLabel ("Meilleur parcours :  ");
+        JPanel nouveau = new JPanel();
+        nouveau.setLayout(new GridLayout(3,1));
+        JLabel nb = new JLabel("Nombre de villes: ");
+        JTextField nbEntree = new JTextField("");
+        JButton changerNb = new JButton("Changer");
+        JButton start = new JButton("Lancer");
 
+        //Ajout au panel de changement de réseau
+        nouveau.add(nb);
+        nouveau.add(nbEntree);
+        nouveau.add(changerNb);
 
         //Ajout des éléments
         Info.add(information);
-        Info.add(cycle);
-        boutons.add(start);
-        boutons.add(etape);
-        Info.add(boutons);
+        Info.add(nouveau);
+        Info.add(start);
 
-        //Gestion Listeners
-        ActionListener cycleComplet = new CycleCompletListener(reseau);
+        //===============================Gestion Listeners=============================================================
+        //Changer la taille du réseau ou simplement en avoir un nouveau
+        ActionListener nouv =  new NouveauReseauListener(reseau,colonie,nbEntree);
+        changerNb.addActionListener(nouv);
+        //Lancer un parcours jusqu'à atteindre la convergence
+        ActionListener cycleComplet = new CycleCompletListener(reseau,colonie);
         start.addActionListener(cycleComplet);
 
-        //Dessein du réseau
+        //Dessein du réseau et ajout aux observers
         Carte carte = new Carte(reseau);
         reseau.addObserver(carte);
         add(carte,BorderLayout.CENTER);
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }

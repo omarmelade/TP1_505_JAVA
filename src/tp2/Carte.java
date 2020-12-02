@@ -15,6 +15,7 @@ public class Carte extends JPanel implements Observer{
 	//Constructeurs
 	public Carte(Reseau reseau) {
 		this.reseau =reseau;
+		System.out.println("TAILLE DANS LA CARTE :"+reseau.getNbVilles());
 	}
 
 	@Override

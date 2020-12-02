@@ -8,13 +8,16 @@ import java.util.Random;
 public class CycleCompletListener implements ActionListener {
 	
 	Reseau reseau;
-	
-	public CycleCompletListener(Reseau reseau) {
+	Colonie colonie;
+	public CycleCompletListener(Reseau reseau,Colonie colonie) {
 		this.reseau = reseau;
+		this.colonie = colonie;
 	}
 	
 	//-------------METHODES--------------------------------------------
 	 public static void repartitionAleatoire(Reseau reseau, Colonie colonie) {
+		 System.out.println("NB VILLES:"+ reseau.getNbVilles()+"|NB ARRETES :"+reseau.getNbArete());
+		 System.out.println("NB Fourmi:"+ colonie.getNbFourmi());
 		 Random rand = new Random();
 		 ArrayList<Ville> villesAttribuables = (ArrayList<Ville>) reseau.getVilles().clone();
 		 for(int i = 0; i< colonie.getNbFourmi();i++) {
@@ -65,7 +68,6 @@ public class CycleCompletListener implements ActionListener {
 			 for (Arete a: f.getArretesParcourues()) {
 				  // les fourmis deposent pour le moment une quantité 0.5 (arbitraire de phéronmone
 				 r.modifieArete(a.getV1(), a.getV2());
-
 			 }
 		 }
 	 }
@@ -122,11 +124,10 @@ public class CycleCompletListener implements ActionListener {
 			 Ville villeChoisie = randVille(fourmi, listeProba, reseau);
 			 restante.remove(villeChoisie);
 		 }
+		 
 	 }
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		 Colonie colonie = new Colonie(10);
-
 		 // initialisation des tableau qui repertorient les meilleurs parcours
 		 ArrayList<Arete> meilleurParcours = new ArrayList<>();
 		 ArrayList<Arete> nouveauMeilleurParcours;
@@ -162,7 +163,7 @@ public class CycleCompletListener implements ActionListener {
 			nouvelleDistance = colonie.getMeilleureDistance();
 			nouveauMeilleurParcours = colonie.getMeilleurParcours();
 			// on calcul la difference entre les 2 distances
-			difference = Math.abs(distanceAncien - nouvelleDistance);
+			difference = distanceAncien - nouvelleDistance;
 			//System.out.println(distanceAncien + " - " + nouvelleDistance + " = " + difference);
 			// si c'est la premiere occurence de la boucle OU si le meilleur parcours est moins bon que le nouveau alors :
 		 	meilleur = distanceAncien >= nouvelleDistance;
@@ -171,16 +172,22 @@ public class CycleCompletListener implements ActionListener {
 				meilleurParcours = nouveauMeilleurParcours;
 				distanceAncien = nouvelleDistance;
 			}
-			if (difference <= 5) {
+			if ((0<=difference)&&(difference<= 5)) {
 				convergence = true;
 			}
 			for (Fourmi f: colonie.getColonie()) {
 				 f.resetFourmi();
 			 }
-			 System.out.println("============SUIVANT==============");
-			 System.out.println("Distance : "+colonie.getMeilleureDistance());
+			 //System.out.println("============SUIVANT==============");
+			 //System.out.println("Distance : "+colonie.getMeilleureDistance());
+			 reseau.notifyObservers();
+			 try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		 	}	
-	        reseau.notifyObservers();
 		 }
 
 }

@@ -19,7 +19,9 @@ public class Reseau extends Observable {
         this.nbVilles = nbVilles;
         initReseau();
         this.nbArete = distanceVilles.size();
+       
     }
+    
 
     /**
      * Initialise le reseau avec :
@@ -107,5 +109,11 @@ public class Reseau extends Observable {
                 ", villes=" + villes +
                 ", distanceVilles=" + distanceVilles +
                 '}';
+    }
+    public void setReseau(int nbVilles) {
+        this.nbVilles = nbVilles;
+        initReseau();
+        this.nbArete = distanceVilles.size();
+        setChanged();
     }
 }

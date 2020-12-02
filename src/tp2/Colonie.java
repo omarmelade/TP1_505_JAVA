@@ -60,4 +60,13 @@ public class Colonie {
 				", colonie=" + colonie +
 				'}';
 	}
+	
+	public void setColonie(int nb) {
+		this.nbFourmie = nb;
+		this.meilleurParcours = new ArrayList<>();
+		this.colonie = new ArrayList<>();
+		for(int i= 0;i<nbFourmie;i++) {
+			colonie.add(new Fourmi(i));
+		}
+	}
 }
