@@ -19,8 +19,6 @@ public class Reseau extends Observable {
         this.nbVilles = nbVilles;
         initReseau();
         this.nbArete = distanceVilles.size();
-        setChanged();
-        notifyAll();
     }
 
     /**
@@ -89,11 +87,9 @@ public class Reseau extends Observable {
         for (Arete a: distanceVilles) {
             if(a.getV1().getId() == v1.getId() && a.getV2().getId() == v2.getId()){
                 a.setPheromone(Fourmi.Q);
-                this.setChanged();
             }
         }
-        setChanged();
-        notifyAll();
+        this.setChanged();
     }
 
     public int getNbVilles() {
