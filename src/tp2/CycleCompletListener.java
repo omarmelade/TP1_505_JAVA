@@ -5,13 +5,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.JLabel;
+
 public class CycleCompletListener implements ActionListener {
 	
 	Reseau reseau;
 	Colonie colonie;
-	public CycleCompletListener(Reseau reseau,Colonie colonie) {
+	JLabel distance;
+	public CycleCompletListener(Reseau reseau,Colonie colonie,JLabel distance) {
 		this.reseau = reseau;
 		this.colonie = colonie;
+		this.distance = distance;
 	}
 	
 	//-------------METHODES--------------------------------------------
@@ -73,13 +77,17 @@ public class CycleCompletListener implements ActionListener {
 	 }
 
 	 public static void meilleurParcours(Colonie col, Reseau reseau){
-	 	 double distance = col.getColonie().get(0).getDistanceParcourue();
+		 double distance;
+		 if(col.getMeilleurParcours().isEmpty()) {
+		 	 distance = col.getColonie().get(0).getDistanceParcourue();
+		 }else {
+			 distance = col.getMeilleureDistance();
+		 }
 		 ArrayList<Arete> bestWay = new ArrayList<>();
 		 for (Fourmi f: col.getColonie()) {
 		 		double distanceDeFourmi = f.getDistanceParcourue();
 			 	if( distanceDeFourmi < distance){
 		 			distance = distanceDeFourmi;
-
 					for (Arete a: f.getArretesParcourues()) {
 						bestWay.add(reseau.getArete(a.getV1(), a.getV2()));
 					}
@@ -172,7 +180,7 @@ public class CycleCompletListener implements ActionListener {
 				meilleurParcours = nouveauMeilleurParcours;
 				distanceAncien = nouvelleDistance;
 			}
-			if ((0<=difference)&&(difference<= 5)) {
+			if ((0<=difference)&&(difference<= 1)) {
 				convergence = true;
 			}
 			for (Fourmi f: colonie.getColonie()) {
@@ -182,12 +190,15 @@ public class CycleCompletListener implements ActionListener {
 			 //System.out.println("Distance : "+colonie.getMeilleureDistance());
 			 reseau.notifyObservers();
 			 try {
-				Thread.sleep(1000);
+				Thread.sleep(250);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			 System.out.println(colonie.getMeilleurParcours());
 		 	}	
+		 distance.setText("Plus courte distance : "+Math.round(colonie.getMeilleureDistance()));
 		 }
+	
 
 }

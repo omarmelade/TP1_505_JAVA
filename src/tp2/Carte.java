@@ -11,9 +11,9 @@ public class Carte extends JPanel implements Observer{
 	
 	//Attributs
 	private Reseau reseau;
-	
+	private Colonie colonie;
 	//Constructeurs
-	public Carte(Reseau reseau) {
+	public Carte(Reseau reseau, Colonie colonie) {
 		this.reseau =reseau;
 		System.out.println("TAILLE DANS LA CARTE :"+reseau.getNbVilles());
 	}
@@ -38,9 +38,19 @@ public class Carte extends JPanel implements Observer{
 			int y2 = 15+50*((int)listeAretes.get(i).getV2().getY());
 			int epaisseur = (int)listeAretes.get(i).getPhero();
 			graphic2d.setStroke(new BasicStroke( (int) (listeAretes.get(i).getPhero()/4) ));
-			listeAretes.get(i).setPheromone(epaisseur);
 			graphic2d.drawLine(x1, y1, x2, y2);
 		}
+		/*for(Arete a:colonie.getMeilleurParcours()) {
+			int x1 = 15+50*((int)a.getV1().getX());
+			int y1 = 15+50*((int)a.getV1().getY());
+			int x2 = 15+50*((int)a.getV2().getX());
+			int y2 = 15+50*((int)a.getV2().getY());
+			int epaisseur = (int)a.getPhero();
+			graphic2d.setColor(Color.GREEN);
+			graphic2d.setStroke(new BasicStroke( (int) (a.getPhero()/4) ));
+			graphic2d.drawLine(x1, y1, x2, y2);
+		}*/
+		graphic2d.setColor(Color.BLUE);
 		graphic2d.setStroke(s);
 
 		//Dessiner les villes avec leur numéro

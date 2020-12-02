@@ -32,7 +32,7 @@ final static int LARGEUR= 1600;
         JTextField nbEntree = new JTextField("");
         JButton changerNb = new JButton("Changer");
         JButton start = new JButton("Lancer");
-
+        JLabel distance= new JLabel("Plus courte distance :");
         //Ajout au panel de changement de réseau
         nouveau.add(nb);
         nouveau.add(nbEntree);
@@ -42,19 +42,22 @@ final static int LARGEUR= 1600;
         Info.add(information);
         Info.add(nouveau);
         Info.add(start);
-
+        Info.add(distance);
+        
+        //Dessein du réseau et ajout aux observers
+        Carte carte = new Carte(reseau,colonie);
+        reseau.addObserver(carte);
+        add(carte,BorderLayout.CENTER);
+        
         //===============================Gestion Listeners=============================================================
         //Changer la taille du réseau ou simplement en avoir un nouveau
         ActionListener nouv =  new NouveauReseauListener(reseau,colonie,nbEntree);
         changerNb.addActionListener(nouv);
         //Lancer un parcours jusqu'à atteindre la convergence
-        ActionListener cycleComplet = new CycleCompletListener(reseau,colonie);
+        ActionListener cycleComplet = new CycleCompletListener(reseau,colonie,distance);
         start.addActionListener(cycleComplet);
 
-        //Dessein du réseau et ajout aux observers
-        Carte carte = new Carte(reseau);
-        reseau.addObserver(carte);
-        add(carte,BorderLayout.CENTER);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
