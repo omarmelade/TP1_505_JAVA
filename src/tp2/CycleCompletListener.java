@@ -195,9 +195,12 @@ public class CycleCompletListener implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			 System.out.println(colonie.getMeilleurParcours());
+			 System.out.println("Meilleur distance:"+colonie.getMeilleureDistance());
+			 //System.out.println(colonie.getMeilleurParcours());
 		 	}	
 		 distance.setText("Plus courte distance : "+Math.round(colonie.getMeilleureDistance()));
+		 System.out.println("-------------------------------------");
+
 		 }
 	
 
