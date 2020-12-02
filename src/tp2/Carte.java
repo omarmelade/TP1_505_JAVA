@@ -14,7 +14,8 @@ public class Carte extends JPanel implements Observer{
 	private Colonie colonie;
 	//Constructeurs
 	public Carte(Reseau reseau, Colonie colonie) {
-		this.reseau =reseau;
+		this.reseau = reseau;
+		this.colonie = colonie;
 		System.out.println("TAILLE DANS LA CARTE :"+reseau.getNbVilles());
 	}
 
@@ -40,7 +41,9 @@ public class Carte extends JPanel implements Observer{
 			graphic2d.setStroke(new BasicStroke( (int) (listeAretes.get(i).getPhero()/4) ));
 			graphic2d.drawLine(x1, y1, x2, y2);
 		}
-		/*for(Arete a:colonie.getMeilleurParcours()) {
+
+		// colorie le meilleur parcours
+/*		for(Arete a: colonie.getMeilleurParcours()) {
 			int x1 = 15+50*((int)a.getV1().getX());
 			int y1 = 15+50*((int)a.getV1().getY());
 			int x2 = 15+50*((int)a.getV2().getX());
@@ -68,7 +71,6 @@ public class Carte extends JPanel implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		System.err.println("J'AI ETE OBSERVE");
 		this.repaint();
 	}
 	

@@ -1,9 +1,8 @@
 package tp2;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JTextField;
 
 public class NouveauReseauListener implements ActionListener{
 	Reseau reseau;
@@ -20,6 +19,5 @@ public class NouveauReseauListener implements ActionListener{
 		 reseau.setReseau(nombre);;
 		 colonie.setColonie(nombre);
 	     reseau.notifyObservers();
-	     System.out.println("============================NOUVEAU RESEAU DE TAILLE : "+reseau.getNbVilles()+"============================");
 	}
 }

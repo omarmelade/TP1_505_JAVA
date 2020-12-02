@@ -1,11 +1,10 @@
 package tp2;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.JLabel;
 
 public class CycleCompletListener implements ActionListener {
 	
@@ -20,8 +19,6 @@ public class CycleCompletListener implements ActionListener {
 	
 	//-------------METHODES--------------------------------------------
 	 public static void repartitionAleatoire(Reseau reseau, Colonie colonie) {
-		 System.out.println("NB VILLES:"+ reseau.getNbVilles()+"|NB ARRETES :"+reseau.getNbArete());
-		 System.out.println("NB Fourmi:"+ colonie.getNbFourmi());
 		 Random rand = new Random();
 		 ArrayList<Ville> villesAttribuables = (ArrayList<Ville>) reseau.getVilles().clone();
 		 for(int i = 0; i< colonie.getNbFourmi();i++) {
@@ -72,6 +69,7 @@ public class CycleCompletListener implements ActionListener {
 			 for (Arete a: f.getArretesParcourues()) {
 				  // les fourmis deposent pour le moment une quantité 0.5 (arbitraire de phéronmone
 				 r.modifieArete(a.getV1(), a.getV2());
+
 			 }
 		 }
 	 }
@@ -93,8 +91,10 @@ public class CycleCompletListener implements ActionListener {
 					}
 				}
 		 }
-		 col.setMeilleureDistance(distance);
-		 col.setMeilleurParcours(bestWay);
+		 if(!bestWay.isEmpty()){
+			 col.setMeilleureDistance(distance);
+			 col.setMeilleurParcours(bestWay);
+		 }
 	 }
 
 
@@ -131,8 +131,8 @@ public class CycleCompletListener implements ActionListener {
 			 //===================================================================================
 			 Ville villeChoisie = randVille(fourmi, listeProba, reseau);
 			 restante.remove(villeChoisie);
+
 		 }
-		 
 	 }
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -141,7 +141,7 @@ public class CycleCompletListener implements ActionListener {
 		 ArrayList<Arete> nouveauMeilleurParcours;
 
 		 //Répartition des fourmis aléatoire avec 1 ville = 1 fourmie
-		 repartitionAleatoire(reseau, colonie);
+
 		 //Tant que non convergence du système faire
 		 boolean convergence = false;
 		 double distanceAncien = 0.0;
@@ -150,6 +150,7 @@ public class CycleCompletListener implements ActionListener {
 		 boolean meilleur;
 
 		 while(!convergence) {
+			 repartitionAleatoire(reseau, colonie);
 			//Cycle pour l'ensemble de la colonie
 			for (Fourmi fourmi : colonie.getColonie()) {
 				//Pour chaque fourmi faire
@@ -160,7 +161,6 @@ public class CycleCompletListener implements ActionListener {
 
 			// après que sur chaque arète les phéromones se soient évaporés, les fourmis deposent les leurs de nouveau
 			depotPheromone(colonie, reseau);
-			//System.out.println("Arete fin de boucle : " + reseau.getAretes());
 			// on selectionne le meilleur parcours parmis le parcours des fourmis et on l'enregistre si il est meilleur que l'ancien.
 
 			 // on recupere l'ancienne distance
@@ -172,7 +172,6 @@ public class CycleCompletListener implements ActionListener {
 			nouveauMeilleurParcours = colonie.getMeilleurParcours();
 			// on calcul la difference entre les 2 distances
 			difference = distanceAncien - nouvelleDistance;
-			//System.out.println(distanceAncien + " - " + nouvelleDistance + " = " + difference);
 			// si c'est la premiere occurence de la boucle OU si le meilleur parcours est moins bon que le nouveau alors :
 		 	meilleur = distanceAncien >= nouvelleDistance;
 			if (meilleurParcours.isEmpty() || meilleur) {
@@ -193,10 +192,8 @@ public class CycleCompletListener implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			 //System.out.println(colonie.getMeilleurParcours());
 		 	}	
 		 distance.setText("Plus courte distance : "+Math.round(colonie.getMeilleureDistance()));
-		 System.out.println("-------------------------------------");
 
 		 }
 	
