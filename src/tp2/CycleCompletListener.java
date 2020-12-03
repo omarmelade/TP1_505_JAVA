@@ -114,13 +114,13 @@ public class CycleCompletListener implements ActionListener {
 			 for(int i =0;i<restante.size();i++) {
 				 Ville temp = restante.get(i);
 				 Arete tempArete = reseau.getArete(fourmi.getVilleCourante(), temp);
-				 nominateur = (tempArete.getPhero() * Arete.EVAPORATION) * (1 / tempArete.distance);
+				 nominateur = (tempArete.getPhero() * Arete.EVAPORATION) * (1 / tempArete.getDistance());
 
 				 //Boucle permettant de calculer le denominateur
 				 for (int j = 0; j < restante.size(); j++) {
 					 Ville tempSomme = restante.get(j);
 					 Arete areteSomme = reseau.getArete(fourmi.getVilleCourante(), tempSomme);
-					 denominateur += (areteSomme.getPhero() * Arete.EVAPORATION) * (1 / areteSomme.distance);
+					 denominateur += (areteSomme.getPhero() * Arete.EVAPORATION) * (1 / areteSomme.getDistance());
 				 }
 				 prob = nominateur / denominateur; //Proba pour la ville temporaire
 				 prob = Math.ceil(prob * 100);

@@ -5,8 +5,8 @@ import java.util.Observable;
 
 public class Reseau extends Observable {
 
-    int nbVilles;
-    int nbArete;
+    private int nbVilles;
+    private int nbArete;
     private ArrayList<Ville> villes;
     private ArrayList<Arete> distanceVilles;
 

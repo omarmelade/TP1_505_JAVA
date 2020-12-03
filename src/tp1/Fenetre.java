@@ -23,7 +23,7 @@ final static int LARGEUR= 1600;
 //Panel de test   
 private JTabbedPane tabbedPane = new JTabbedPane();
 private JPanel Question_1 =new JPanel();
-private  JPanel Question_2 =new JPanel();
+private  JTextArea Question_2 =new JTextArea();
 
 
 public Fenetre() {

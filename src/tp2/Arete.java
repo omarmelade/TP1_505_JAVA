@@ -4,9 +4,9 @@ public class Arete {
 
 	private static final double PHEROMONE_INIT = 2;
 	public static final double EVAPORATION = 0.7;
-    double distance;
-    Ville v1, v2;
-    double quantitePheromone;
+    private double distance;
+    private Ville v1, v2;
+    private double quantitePheromone;
 
     /**
      * Initialise la distance entre les 2 villes qui constitue l'arrete

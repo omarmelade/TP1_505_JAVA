@@ -40,8 +40,8 @@ public class Fourmi {
      */
     public void ajoutArete(Arete arete){
     	arretesParcourues.add(arete);
-    	setDistance(arete.distance);
-    	setDistance(arete.distance);
+    	setDistance(arete.getDistance());
+    	setDistance(arete.getDistance());
     }
        
     public void setDistance(double distance) {
@@ -80,7 +80,6 @@ public class Fourmi {
         distanceParcourue = 0.0;
         villesParcourues.clear();
         arretesParcourues.clear();
-        setVille(villeCourante);
     }
 
     @Override
